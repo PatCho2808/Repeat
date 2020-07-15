@@ -41,7 +41,7 @@
                 title: null,
                 initialDate: new Date(),
                 repetitionDates: [],
-                titleState: null
+                titleState: false
             }
         },
         methods: {

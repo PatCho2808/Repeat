@@ -7,13 +7,14 @@ export class GoogleCalendarAPI
 
     addEventToCalendar(title, date)
     {
+        console.log(date.toISOString().substring(0,10));
         let event = {
             'summary' : title,
             'start': {
-                'dateTime': date.toISOString()
+                'date': date.toISOString().substring(0,10)
             },
             'end': {
-                'dateTime': date.toISOString()
+                'date' : date.toISOString().substring(0,10)
             }
         };
 
@@ -23,7 +24,7 @@ export class GoogleCalendarAPI
         });
 
         request.execute(event => {
-            alert("Created event "+ event.summary + " at " + event.start.dateTime.substring(0,10));
+            alert("Created event "+ event.summary + " at " + event.start.date);
         });
     }
 
