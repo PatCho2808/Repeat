@@ -23,7 +23,7 @@ export class GoogleCalendarAPI
         });
 
         request.execute(event => {
-            alert("Created event "+ event.summary + " at " + event.start.dateTime.toLocaleString());
+            alert("Created event "+ event.summary + " at " + event.start.dateTime.substring(0,10));
         });
     }
 
