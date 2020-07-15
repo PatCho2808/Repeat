@@ -2,7 +2,9 @@
     <div>
         <b-form>
             <label>Title: </label>
-            <b-form-input v-model="title" placeholder="How to fly"></b-form-input>
+            <b-form-input :state="inputState"
+                          v-model="title"
+                          placeholder="How to fly"></b-form-input>
             <small> It will be the name of the event in the calendar </small>
             <br>
             <br>
@@ -11,45 +13,52 @@
             <br>
             <br>
             <label> First repetition: </label>
-            <b-form-datepicker v-model="repetitions[0]" ></b-form-datepicker>
+            <b-form-datepicker v-model="repetitionDates[0]" ></b-form-datepicker>
             <br>
             <br>
             <label> Second repetition: </label>
-            <b-form-datepicker v-model="repetitions[1]" ></b-form-datepicker>
+            <b-form-datepicker v-model="repetitionDates[1]" ></b-form-datepicker>
             <br>
             <br>
             <label> Third repetition: </label>
-            <b-form-datepicker v-model="repetitions[2]" ></b-form-datepicker>
+            <b-form-datepicker v-model="repetitionDates[2]" ></b-form-datepicker>
             <br>
             <br>
             <label> Fourth repetition: </label>
-            <b-form-datepicker v-model="repetitions[3]" ></b-form-datepicker>
+            <b-form-datepicker v-model="repetitionDates[3]" ></b-form-datepicker>
             <br>
             <br>
         </b-form>
+        <SaveToCalendar @titleNotValid="inputState=false"
+                        @titleValid="inputState=true"
+                        :repetitionDates="repetitionDates"
+                        :title="title"></SaveToCalendar>
     </div>
 </template>
 
 <script>
+    import SaveToCalendar from "@/components/SaveToCalendar";
     export default {
         name: "Form",
+        components: {SaveToCalendar},
         data: function(){
             return {
                 title: null,
                 initialDate: new Date(),
-                repetitions: []
+                repetitionDates: [],
+                inputState: null
             }
         },
         methods: {
           computeRepetitions: function(){
-              this.repetitions = [];
+              this.repetitionDates = [];
               for(let i=0; i<4; i++){
-                  this.repetitions.push(new Date(this.initialDate));
+                  this.repetitionDates.push(new Date(this.initialDate));
               }
-              this.repetitions[0].setDate(this.repetitions[0].getDate() + 1);
-              this.repetitions[1].setDate(this.repetitions[1].getDate() + 10);
-              this.repetitions[2].setDate(this.repetitions[2].getDate() + 30);
-              this.repetitions[3].setDate(this.repetitions[3].getDate() + 60);
+              this.repetitionDates[0].setDate(this.repetitionDates[0].getDate() + 1);
+              this.repetitionDates[1].setDate(this.repetitionDates[1].getDate() + 10);
+              this.repetitionDates[2].setDate(this.repetitionDates[2].getDate() + 30);
+              this.repetitionDates[3].setDate(this.repetitionDates[3].getDate() + 60);
           }
         },
         mounted: function(){
