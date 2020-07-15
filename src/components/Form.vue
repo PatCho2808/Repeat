@@ -2,7 +2,7 @@
     <div>
         <b-form>
             <label>Title: </label>
-            <b-form-input :state="inputState"
+            <b-form-input :state="titleState"
                           v-model="title"
                           placeholder="How to fly"></b-form-input>
             <small> It will be the name of the event in the calendar </small>
@@ -29,8 +29,8 @@
             <br>
             <br>
         </b-form>
-        <SaveToCalendar @titleNotValid="inputState=false"
-                        @titleValid="inputState=true"
+        <SaveToCalendar @titleNotValid="titleState=false"
+                        @titleValid="titleState=true"
                         :repetitionDates="repetitionDates"
                         :title="title"></SaveToCalendar>
     </div>
@@ -46,7 +46,7 @@
                 title: null,
                 initialDate: new Date(),
                 repetitionDates: [],
-                inputState: null
+                titleState: null
             }
         },
         methods: {

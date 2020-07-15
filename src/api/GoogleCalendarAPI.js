@@ -22,7 +22,9 @@ export class GoogleCalendarAPI
             'resource' : event
         });
 
-        request.execute(function(){console.log('dodano')});
+        request.execute(event => {
+            alert("Created event "+ event.summary + " at " + event.start.dateTime.toLocaleString());
+        });
     }
 
     addEventsToCalendar(title, dates)
