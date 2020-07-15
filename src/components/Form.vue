@@ -11,22 +11,17 @@
             <label> When did you learn that stuff: </label>
             <b-form-datepicker @input="computeRepetitions" v-model="initialDate" ></b-form-datepicker>
             <br>
-            <br>
             <label> First repetition: </label>
             <b-form-datepicker v-model="repetitionDates[0]" ></b-form-datepicker>
-            <br>
             <br>
             <label> Second repetition: </label>
             <b-form-datepicker v-model="repetitionDates[1]" ></b-form-datepicker>
             <br>
-            <br>
             <label> Third repetition: </label>
             <b-form-datepicker v-model="repetitionDates[2]" ></b-form-datepicker>
             <br>
-            <br>
             <label> Fourth repetition: </label>
             <b-form-datepicker v-model="repetitionDates[3]" ></b-form-datepicker>
-            <br>
             <br>
         </b-form>
         <SaveToCalendar @titleNotValid="titleState=false"
